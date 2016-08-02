@@ -7,6 +7,8 @@ import os
 from astropy.io import fits
 import aplpy
 
+from config import plottingDictionary
+
 region_list=['L1688', 'B18', 'NGC1333', 'OrionA']
 line_list=['NH3_11','NH3_22','NH3_33','C2S','HC5N','HC7N_21_20','HC7N_22_21']
 label_list=['NH$_3$(1,1)','NH$_3$(2,2)','NH$_3$(3,3)','C$_2$S','HC$_5$N',
@@ -24,55 +26,8 @@ color_hall= ['#a6cee3', '#fdbf6f', '#33a02c', '#b2df8a', '#fb9a99', '#e31a1c',
 
 bin_size=0.01 # K
 
-def setup_plot_parameters(region='L1688'):
-    """
-    This function returns a dictionary with the plotting parameters for the 
-    requested region.
-
-    There might be a better or more elegant solution, to be discussed
-
-    the rms_max array is the array with the maximum rms to be plotted, where
-    the array loops over the lines in hte order of line_list
-    """
-    if region=='L1688':
-        param={'size_x' : 9, 'size_y' : 7, 
-               'scalebar_size' : 0.1*u.pc, 'scalebar_pos' : 'bottom right',
-               'distance' : 145.*u.pc, 'beam_pos' : 'bottom left',
-               'label_xpos' : 0.025, 'label_ypos' : 0.1,
-               'label_align' : 'left',
-               'rms_min' : np.array([0.05, 0.05, 0.05, 0.1, 0.05, 0.05, 0.05]),
-               'rms_max' : np.array([0.75, 0.75, 0.75, 1.0, 0.75, 0.75, 0.75]) }
-    elif region=='B18':
-        param={'size_x' : 19, 'size_y' : 7, 
-               'scalebar_size' : 0.1*u.pc, 'scalebar_pos' : 'bottom right',
-               'distance' : 145.*u.pc, 'beam_pos' : 'top left',
-               'label_xpos' : 0.025, 'label_ypos' : 0.9,
-               'label_align' : 'left',
-               'rms_min' : np.array([0.05, 0.05, 0.05, 0.1, 0.05, 0.05, 0.05]),
-               'rms_max' : np.array([0.75, 0.75, 0.75, 1.0, 0.75, 0.75, 0.75]) }
-    elif region=='NGC1333':
-        param={'size_x' : 8, 'size_y' : 12, 
-               'scalebar_size' : 0.1*u.pc, 'scalebar_pos' : 'top right',
-               'distance' : 250.*u.pc, 'beam_pos' : 'bottom left',
-               'label_xpos' : 0.025, 'label_ypos' : 0.075,
-               'label_align' : 'left',
-               'rms_min' : np.array([0.05, 0.05, 0.05, 0.1, 0.05, 0.05, 0.05]),
-               'rms_max' : np.array([0.75, 0.75, 0.75, 1.0, 0.75, 0.75, 0.75]) }
-    elif region=='OrionA':
-        param={'size_x' : 4.5, 'size_y' : 11, 
-               'scalebar_size' : 0.1*u.pc, 'scalebar_pos' : 'bottom right',
-               'distance' : 450.*u.pc, 'beam_pos' : 'top left',
-               'label_xpos' : 0.025, 'label_ypos' : 0.925,
-               'label_align' : 'left',
-               'rms_min' : np.array([0.05, 0.05, 0.05, 0.1, 0.05, 0.05, 0.05]),
-               'rms_max' : np.array([0.75, 0.75, 0.75, 1.0, 0.75, 0.75, 0.75]) }
-    else:
-        warnings.warn("Region not in DR1 or not defined yet")
-    return param
-
-
 for region_i in region_list:
-    plot_param=setup_plot_parameters(region=region_i)
+    plot_param=plottingDictionary[region_i]#setup_plot_parameters(region=region_i)
     fig_hall=plt.figure(figsize=(6,6))
     ax_hall = fig_hall.add_subplot(111)
     v_hall_max=np.max(plot_param['rms_max'])
@@ -151,4 +106,4 @@ for region_i in region_list:
     for index in range(len(leg_text)):
         plt.setp( leg_text[index], color=color_hall[index] )
     fig_hall.savefig('figures/{0}_all_{1}_rms_hist.pdf'.format(region_i,extension),adjust_bbox=True)
-
+    plt.close('all')
