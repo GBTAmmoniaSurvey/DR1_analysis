@@ -7,8 +7,10 @@ import os
 from astropy.io import fits
 import aplpy
 
+from config import plottingDictionary
+
 region_list=['L1688', 'B18', 'NGC1333', 'OrionA']
-region_list=['B18']
+region_list=['L1688']
 line_list=['NH3_11','NH3_22','NH3_33','C2S','HC5N','HC7N_21_20','HC7N_22_21']
 label_list=['NH$_3$(1,1)','NH$_3$(2,2)','NH$_3$(3,3)','C$_2$S','HC$_5$N',
             'HC$_7$N (21-20)','HC$_7$N (22-21)']
@@ -17,59 +19,8 @@ color_table='magma'
 text_color='black'
 beam_color='#d95f02'  # previously used '#E31A1C'
 
-def setup_plot_parameters(region='L1688'):
-    """
-    This function returns a dictionary with the plotting parameters for the 
-    requested region.
-
-    There might be a better or more elegant solution, to be discussed
-
-    the mom0_max array is the array with the maximum mom0 to be plotted, where
-    the array loops over the lines in hte order of line_list
-    """
-    if region=='L1688':
-        param={'size_x' : 9, 'size_y' : 7, 
-               'scalebar_size' : 0.1*u.pc, 'scalebar_pos' : 'bottom right',
-               'distance' : 145.*u.pc, 'beam_pos' : 'bottom left',
-               'label_xpos' : 0.025, 'label_ypos' : 0.1,
-               'label_align' : 'left',
-               'mom0_min' : np.array([0.05, 0.05, 0.05, 0.1, 0.05, 0.05, 0.05]),
-               'mom0_max' : np.array([0.75, 0.75, 0.75, 1.0, 0.75, 0.75, 0.75]),
-               'w11_step' : 0.3}
-    elif region=='B18':
-        param={'size_x' : 19, 'size_y' : 7, 
-               'scalebar_size' : 0.1*u.pc, 'scalebar_pos' : 'bottom right',
-               'distance' : 145.*u.pc, 'beam_pos' : 'top left',
-               'label_xpos' : 0.025, 'label_ypos' : 0.9,
-               'label_align' : 'left',
-               'mom0_min' : np.array([-0.17,-0.1,-0.1,-0.3,-0.25,-0.25,-0.36]),
-               'mom0_max' : np.array([3.0, 0.5, 0.5, 1.8, 1.4, 1.0, 1.5]),
-               'w11_step' : 0.3}
-    elif region=='NGC1333':
-        param={'size_x' : 8, 'size_y' : 12, 
-               'scalebar_size' : 0.1*u.pc, 'scalebar_pos' : 'top right',
-               'distance' : 250.*u.pc, 'beam_pos' : 'bottom left',
-               'label_xpos' : 0.025, 'label_ypos' : 0.075,
-               'label_align' : 'left',
-               'mom0_min' : np.array([0.05, 0.05, 0.05, 0.1, 0.05, 0.05, 0.05]),
-               'mom0_max' : np.array([0.75, 0.75, 0.75, 1.0, 0.75, 0.75, 0.75]),
-               'w11_step' : 0.3}
-    elif region=='OrionA':
-        param={'size_x' : 4.5, 'size_y' : 11, 
-               'scalebar_size' : 0.1*u.pc, 'scalebar_pos' : 'bottom right',
-               'distance' : 450.*u.pc, 'beam_pos' : 'top left',
-               'label_xpos' : 0.025, 'label_ypos' : 0.925,
-               'label_align' : 'left',
-               'mom0_min' : np.array([0.05, 0.05, 0.05, 0.1, 0.05, 0.05, 0.05]),
-               'mom0_max' : np.array([0.75, 0.75, 0.75, 1.0, 0.75, 0.75, 0.75]),
-               'w11_step' : 0.3}
-    else:
-        warnings.warn("Region not in DR1 or not defined yet")
-    return param
-
-
 for region_i in region_list:
-    plot_param=setup_plot_parameters(region=region_i)
+    plot_param=plottingDictionary[region_i]
     file_w11='{0}/{0}_NH3_11_{1}_mom0.fits'.format(region_i,extension)
     for i in range(len(line_list)):
         line_i=line_list[i]
@@ -110,8 +61,12 @@ for region_i in region_list:
             fig.colorbar.set_width(0.15)
             fig.colorbar.show( box_orientation='horizontal', width=0.1, pad=0.0, 
                                 location='top', axis_label_text='Integrated Intensity (K km s$^{-1}$)')
+            fig.tick_labels.set_style('colons')
+            fig.tick_labels.set_xformat('hh:mm:ss')
+            fig.tick_labels.set_yformat('dd:mm')
             # fig.set_system_latex(True)
             fig.save( 'figures/{0}_{1}_{2}_mom0_map.pdf'.format(region_i,line_i,extension),adjust_bbox=True)#, bbox_inches='tight')
+
             fig.close()
         else:
             print('File {0} not found'.format(file_mom0))
