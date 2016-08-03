@@ -82,7 +82,7 @@ for region_i in region_list:
             weights = np.ones_like(myarray)/float(len(myarray))
             n, bins, patches = ax.hist( myarray, weights=weights, bins=nbin, 
                                        facecolor=color_hist, range=(v_min,v_max), 
-                                       histtype='stepfilled') 
+                                       histtype='stepfilled')
             ax.set_xlabel('rms (K)')
             ax.set_ylabel('Fraction of Pixels')
             ax.text(0.9, 0.9, '{0}\n{1}'.format(region_i,label_i),
@@ -92,18 +92,21 @@ for region_i in region_list:
             ax.set_xlim(xmin=v_min,xmax=v_max)
             fig.savefig('figures/{0}_{1}_{2}_rms_hist.pdf'.format(region_i,line_i,extension),adjust_bbox=True)
             # now do the histogram of all lines together
-            n, bins, patches = ax_hall.hist( myarray, weights=weights, bins=nbin_hall, 
-                                       range=(v_hall_min,v_hall_max), color=color_hall[i], 
-                                       histtype='step', label=label_i) 
+            hist, binEdges = np.histogram( myarray, weights=weights, bins=nbin_hall, 
+                                       range=(v_hall_min,v_hall_max))
+            binCenters = 0.5*(binEdges[1:]+binEdges[:-1])
+            ax_hall.plot( binCenters, hist, drawstyle='steps-mid',label=label_i,color=color_hall[i])
         else:
             print('File {0} not found'.format(file_rms))
     # after for loop is finished then close things
     ax_hall.set_xlabel('rms (K)')
     ax_hall.set_ylabel('Fraction of Pixels')
     ax_hall.set_xlim(xmin=v_hall_min,xmax=v_hall_max)
-    leg=ax_hall.legend(frameon=False, loc=1, title=region_i)
+    leg=ax_hall.legend(frameon=False, loc=1, title=region_i, handlelength=0)
     leg_text=leg.get_texts()
     for index in range(len(leg_text)):
         plt.setp( leg_text[index], color=color_hall[index] )
+    for item in leg.legendHandles:
+      item.set_visible(False)
     fig_hall.savefig('figures/{0}_all_{1}_rms_hist.pdf'.format(region_i,extension),adjust_bbox=True)
     plt.close('all')
