@@ -10,7 +10,7 @@ import aplpy
 from config import plottingDictionary
 
 region_list=['L1688', 'B18', 'NGC1333', 'OrionA']
-region_list=['L1688']
+region_list=['OrionA']
 line_list=['NH3_11','NH3_22','NH3_33','C2S','HC5N','HC7N_21_20','HC7N_22_21']
 label_list=['NH$_3$(1,1)','NH$_3$(2,2)','NH$_3$(3,3)','C$_2$S','HC$_5$N',
             'HC$_7$N (21-20)','HC$_7$N (22-21)']
@@ -38,7 +38,9 @@ for region_i in region_list:
             #
             # Ticks
             fig.ticks.set_color(text_color)
+            fig.tick_labels.set_style('colons')
             fig.tick_labels.set_xformat('hh:mm:ss')
+            fig.tick_labels.set_yformat('dd:mm')
             # Add beam
             fig.add_beam()
             fig.beam.set_color(beam_color)
@@ -61,12 +63,8 @@ for region_i in region_list:
             fig.colorbar.set_width(0.15)
             fig.colorbar.show( box_orientation='horizontal', width=0.1, pad=0.0, 
                                 location='top', axis_label_text='Integrated Intensity (K km s$^{-1}$)')
-            fig.tick_labels.set_style('colons')
-            fig.tick_labels.set_xformat('hh:mm:ss')
-            fig.tick_labels.set_yformat('dd:mm')
             # fig.set_system_latex(True)
-            fig.save( 'figures/{0}_{1}_{2}_mom0_map.pdf'.format(region_i,line_i,extension),adjust_bbox=True)#, bbox_inches='tight')
-
+            fig.save( 'figures/{0}_{1}_{2}_mom0_map.pdf'.format(region_i,line_i,extension),adjust_bbox=True)
             fig.close()
         else:
             print('File {0} not found'.format(file_mom0))
