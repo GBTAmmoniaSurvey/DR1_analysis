@@ -1,0 +1,219 @@
+Title: The Taurus Spitzer Survey: New Candidate Taurus Members Selected 
+       Using Sensitive Mid-Infrared Photometry  
+Authors: Rebull L.M., Padgett D.L., McCabe C.-E., Hillenbrand L.A., 
+         Stapelfeldt K.R., Noriega-Crespo A., Carey S.J., Brooke T., Huard T., 
+         Terebey S., Audard M., Monin J.-L., Fukagawa M., Gudel M., Knapp G.R.,
+         Menard F., Allen L.E., Angione J.R., Baldovin-Saavedra C., Bouvier J.,
+         Briggs K., Dougados C., Evans N.J., Flagey N., Guieu S., Grosso N., 
+         Glauser A.M., Harvey P., Hines D., Latter W.B., Skinner S.L., 
+         Strom S., Tromp J., Wolf S. 
+Table: Derived properties of new potential Taurus members
+================================================================================
+Byte-by-byte Description of file: datafile7.txt
+--------------------------------------------------------------------------------
+   Bytes Format Units      Label     Explanations
+--------------------------------------------------------------------------------
+   1- 15 A15    ---        SST       Spitzer Tau name
+  17- 39 A23    ---        CName     Common name
+  41- 42 A2     ---        Rank      Our rank
+  44- 50 A7     ---        c2dCat    The c2d category 
+  52- 59 A8     ---        GutCat    The Gutermuth category 
+  61- 64 A4     ---        OurClass  Our class 
+  66- 76 A11    ---        SpType    Spectral type  
+  78- 83 F6.1   0.1nm      EW        ? Our H{alpha} equivalent width (1)
+  85- 88 F4.1   mag        AV        ? The V band extinction
+  90- 93 F4.1   [solLum]   logL*     ? Log luminosity
+      95 A1     ---      l_LIR/Ltot  Limit flag on LIR/Ltot
+  97-103 E7.1   ---        LIR/Ltot  ? Ratio of IR to total luminosities
+ 105-124 A20    ---        Class     Adopted membership classification
+ 126-138 A13    ---        Note      Additional note(s) (2)
+--------------------------------------------------------------------------------
+Note (1): In units of Angstroms.
+Note (2):
+    a = Ca IR triplet in emission in our spectrum. 
+    b = New spectral type, reported here. 
+    c = Unreduced IR spectrum in-hand, to be discussed in a later paper. 
+    d = Object previously identified in the literature as a potential 
+        Taurus member. 
+    e = Object previously identified in the literature as a 
+        potential non-member. 
+    f = Object identified as a Taurus member by other authors using portions
+        of this Spitzer Legacy data set.  
+    g = X-ray source in the XEST survey. 
+    h = Ultraviolet souce in the XEST survey (optical monitor data). 
+    i = Object found via X-rays in Scelsi et al. (2007) and confirmed as new 
+        member in Scelsi et al. (2008); object also independently rediscovered 
+        via IR excesses here. 
+    j = High spatial-resolution optical images suggest IR flux density may be 
+        subject to confusion with a nearby object. 
+    k = Gravity analysis (see text) suggests intermediate gravity object and 
+        therefore likely member. 
+    l = UV excess source in SDSS data. 
+    m = Extended emission seen in image at 8 micron or longer, which may be 
+        affecting the long-wavelength photometry. 
+    n = Object appears lower in the HR diagram than most Taurus members; 
+        object may suffer from additional (unmodelled) extinction such as 
+        may be found in edge-on disks, but may also be background giant. 
+    o = Notes on specific objects: 041810.7+251957 = [GBM90] L1506 1 was 
+        observed in Jan and Dec 2008, and the object went from 4.31 Angstroms 
+        in emission to 0.983 Angstroms in absorption at H{alpha}. 
+        043621.4+271912: many emission lines in the blue spectrum, but not 
+        in the red.  
+        042350.1+264006=FS 116: appears in Hawarden et al. (2001) as a UKIRT
+        JHK standard.
+        042215.6+265706=2MASS J04221568+2657060: has detected nebulosity in 
+        Sloan images, which may be contributing to the measured flux density 
+        at the longest Spitzer bands.
+        043249.3+225308 : within 6 arcsec of a known object (043249.1+225302).
+        041801.1+283526 : may be double source in CFHT image.
+        042920.8+274207 : shares many characteristics of young stars, but 
+        also those of some post-main-sequence objects.
+--------------------------------------------------------------------------------
+041159.7+294236                         C                   III  G8-K1          0.9  2.8 -0.8   2.0e-03 needs add'l followup b            
+041332.3+291726                         A  not yso star     II                                          pending followup     c            
+041339.4+292114                         B- yso     embedded flat                                        pending followup     j            
+041427.3+255130                         B+ not yso star     III  G5             2.5  0.4 -1.7   9.5e-03 possible new member  b n          
+041535.6+284741                         A- yso     embedded I                                           pending followup     c            
+041539.1+281858                         A+ yso     class II II   M5            -7.2  2.8 -0.5   7.5e-02 new member           b f l        
+041542.7+290959                         A+ yso     star     II   M0 w/ Av      -1.9  2.5 -0.5   9.9e-02 new member           b f          
+041557.9+274617                         A+ yso     class II II   M6           -32.2  1.1 -1.1   1.2e-01 new member           b f l        
+041604.8+261801                         C- yso     embedded flat                                        pending followup                  
+041605.8+281426                         C  not yso contam.  I                                           pending followup                  
+041624.5+290858 HD 281820               B  yso     star     III  A2            11.5  0.8  0.3   1.7e-04 needs add'l followup b n          
+041706.2+264413                         B+ not yso star     III  K3             1.5  0.9 -1.0   2.0e-03 needs add'l followup b            
+041801.1+283526                         B+ not yso star     III  K0-K2:         1.1  6.2 -0.9   1.3e-03 possible new member  b o          
+041803.3+244009                         B  yso     star     III  A9             7.9  0.3 -0.3   2.2e-03 needs add'l followup b e n        
+041810.5+284447                         C  yso     class II I                                           pending followup                  
+041810.7+251957 [GBM90] L1506 1         A+ yso     class II II   K8-M0         -4.3  4.3 -0.3   1.1e-01 new member           a b e f o    
+041823.2+251928 2MASX 04182321+2519281  B+ yso     class II flat G              1.9  7.7 -1.8   3.4e-01 needs add'l followup b e l n      
+041831.2+282617                         B+ yso     class II I                                           pending followup     c            
+041858.0+235031                         B  yso     embedded flat                                        pending followup     c            
+041859.0+255740                         B- yso     embedded I                                           pending followup                  
+041936.2+265256                         B  not yso star     III  G3             2.7  0.8 -1.3   3.2e-03 needs add'l followup b n          
+041940.4+270100                         B- yso     embedded I                                           pending followup     g l          
+041941.4+271607 HH390 star              A  yso     class II I    <M0                 5.5 -1.7   8.7e-01 probable new member  c l          
+041946.5+271255                         B  yso     embedded I                                           pending followup     c f          
+042016.1+282132                         A+ yso     class II II   M6e         -133.1  0.2 -2.1   1.3e-01 new member           b c f k      
+042021.4+281349                         A+ yso     class II flat M0e         -489.1  3.5 -2.4   4.4e-01 new member           a b c f l    
+042025.8+281923                         A+ yso     class II flat M4e         -102.2 11.2 -1.5   7.1e-01 new member           b c f k l    
+042025.8+281641                         B  yso     star     III  G2:            3.1  1.0 -0.2   1.6e-04 needs add'l followup b            
+042026.0+280408                         A+ yso     class II II   M2            -5.3  0.0 -0.7   2.6e-01 new member           b c f k l    
+042109.3+275036                         A+ yso     class II III  M3-4e        -17.6  0.0 -1.0   2.0e-02 new member           b c f k l    
+042110.9+255259 V412 Tau                B                   III  A1             9.2  8.3  2.1   7.1e-05 needs add'l followup b l          
+042135.6+253835                         B  not yso star     III  F6-G0          3.1  1.2 -1.2   4.3e-03 possible new member  b n          
+042146.3+242505                         B+ yso     star     III  M3             0.0  2.9  0.1 < 2.3e-04 needs add'l followup b k          
+042151.3+265720                         B          star     II                                          pending followup     c            
+042200.9+235430                         B+ yso     star     III  M3             0.0  3.7  0.2 < 4.6e-05 needs add'l followup b k l        
+042212.9+254659                         B- yso     class II flat                                        pending followup     e l          
+042215.6+265706 2MASS J04221568+2657060 A+ yso     class II I    K8-M0         -7.8  4.5 -1.5   6.5e-01 new member           b c f g h i l
+042220.9+264248                         A  yso     embedded I                                           pending followup                  
+042247.8+264553 IRAS04196+2638          A+ yso     class II II   M1                  6.9 -0.4   2.4e-01 new member           d f l        
+042254.6+282354 NSV 1577                A  yso     star     II   A0            10.0  1.5  1.4   6.0e-04 probable new member  b m          
+042306.0+280119 J04230607+2801194       A+ yso     class II II   M6                  0.0 -1.5   1.0e-01 new member           f l          
+042318.2+264115 J04231822+2641156       A+ yso     class II II   M3.5                8.7 -0.6   8.1e-02 new member           f            
+042325.9+250354                         C- yso     star     II                                          pending followup     c            
+042335.3+250302 FU Tau                  A+ yso     class II II   M5e          -88.4  1.9 -0.7   1.8e-01 new member           b f k l      
+042339.0+251855                         C  not yso contam.  I                                           pending followup                  
+042350.1+264006 FS 116                  C          star     III  G6-K2 w/Av     1.6  8.2 -0.6 < 1.1e-03 needs add'l followup b o          
+042356.0+242705 HD 283663               B  yso     star     III  A1             6.0  1.6  0.3   1.2e-04 needs add'l followup b n          
+042358.6+244742                         B-         star     III  K2             2.5  0.0 -1.0   5.2e-03 needs add'l followup b            
+042420.9+263051 J04242090+2630511       A+ yso     class II II   M6.5                0.3 -1.9   1.2e-01 new member           f l          
+042423.2+265008                         A  yso     star     III  M3            -4.7  1.3 -0.7   1.9e-03 possible new member  b k l        
+042515.5+282927                         A+ yso     star     III  M6e          -23.5  0.0 -1.1 < 1.9e-04 new member           b k l        
+042518.6+255535                         B                   III  M5             0.0  3.7  0.5 < 1.3e-04 needs add'l followup b e k        
+042519.1+234716 HD 27923                B- yso     star     III  B9             8.6  0.1  1.2   4.0e-05 needs add'l followup b m n        
+042558.8+273701 HD 283637               B- yso     star     III  B9             7.0  2.1  0.6   3.5e-05 needs add'l followup b n          
+042653.3+255858                         C  not yso contam.  I                                           pending followup                  
+042721.0+240829                         C-         star     III  G6             2.8  0.2 -1.8   4.2e-03 needs add'l followup b j n        
+042728.1+262323                         C+ not yso star     III  K1 w/ Av       1.3  0.0 -1.6   7.0e-03 needs add'l followup b n          
+042730.2+244123 2MASX 04273023+2441232  B- yso     star     I                                           pending followup     c            
+042810.4+243553                         C  not yso embedded flat                                        pending followup                  
+042857.4+243607                         A  yso     star     III                                         pending followup     c            
+042902.9+243140                         C- yso     star     III                                         pending followup     c            
+042905.2+261535 2MASX 04290517+2615358  B-         star     II                                          pending followup                  
+042916.2+285627 HD 283629               B+ yso     star     III  G6             2.5  0.5 -0.1   1.5e-04 needs add'l followup b            
+042920.8+274207 IRAS 04262+2735         A  yso     class II II   M6             0.0  4.0  0.4   4.0e-02 possible new member  b c d e k o  
+042932.0+243059                         A  yso     embedded I                                           pending followup     c f          
+042936.0+243555 J04293606+2435556       A+ yso     class II II   M3                  6.6 -0.1   4.8e-02 new member           f g h l      
+042949.9+284253                         C- not yso class II flat                                        pending followup                  
+043004.7+283306                         B+ yso     star     III  K2             1.6  1.3 -0.4   3.6e-04 needs add'l followup b            
+043024.1+281916                         B  yso     star     III  M5             0.0  5.1  0.5 < 9.6e-05 needs add'l followup b e k        
+043034.2+252427                         B+ not yso star     II   G5-G6 w/ Av    2.7  2.3 -1.9   8.5e-03 needs add'l followup b n          
+043042.8+274329                         B+ yso     star     III  M6             0.0  3.6  0.1 < 3.2e-04 needs add'l followup b e k        
+043044.7+263308                         B+ yso     star     III  K3             1.1  2.2  0.5   8.9e-04 needs add'l followup b l          
+043131.4+230025                         B-         star     III  K2             1.5  1.7 -0.7   2.7e-03 needs add'l followup b            
+043133.1+292856                         B- yso     star     III  B9 w/ Av      10.7  2.6  0.5   3.3e-05 needs add'l followup b n          
+043141.2+293922                         C-         star     III  K2             1.2  1.4 -1.7   1.1e-02 needs add'l followup b j n        
+043145.0+285908                         B  not yso star     III  F0             1.1  1.3 -0.6   1.0e-03 needs add'l followup b n          
+043213.6+251746 GSC 01833-00754         C+ yso     star     III  A9             6.4  1.3 -0.0   8.2e-05 needs add'l followup b n          
+043214.6+223742                         C  not yso embedded flat                                        pending followup                  
+043224.1+225108                         A+ yso     class II II   M5e          -14.4  1.5 -1.0   6.4e-02 new member           b c f k      
+043225.1+264732                         B- not yso star     III  K1 w/ Av       1.3  3.1 -0.9   1.7e-03 needs add'l followup b            
+043228.1+271122                         B  yso     star     III  M6             0.0  7.0  0.5 < 4.0e-05 needs add'l followup b e k        
+043244.2+230224                            not yso embedded I                                           Xgal                 c            
+043249.3+225308                         A+         class II II   early K      -25.9  7.1 -0.0   3.0e-02 new member           a b f j o    
+043256.4+222342 HD 284481               B- yso     star     III  A8             6.5  1.0  0.3   6.4e-05 needs add'l followup b n          
+043304.2+292149 HD 282276               A  yso     star     II   B8V            5.7                     needs add'l followup c m          
+043312.6+291250 HD 282277               B  yso     star     III  A7V            6.9                     needs add'l followup              
+043316.6+262724                         B+ yso     class II flat                                        pending followup                  
+043326.2+224529 2MASS J04332621+2245293 A  yso     star     II   M4            -6.8  5.9 -0.6   1.5e-02 probable new member  b c f g k    
+043339.0+222720                         A+ yso     class II II   M1e          -23.7  7.9 -0.9   1.2e-01 new member           b c f k      
+043341.8+223836                         B-         star     III  K2 w/ Av       0.7  4.9 -0.9 < 2.1e-03 needs add'l followup b            
+043344.6+261500                         A+ yso     class II II   M6e          -82.2  5.4 -0.6   1.3e-01 new member           b c e f k l  
+043349.5+291528 IRAS 04306+2909            yso     embedded I    Xgal          -1.9  9.5  0.2   2.1e-02 Xgal                 b d          
+043352.4+261254 J04335245+2612548       A+ yso     class II II   M8.5                4.9 -2.4   1.3e-01 new member           f            
+043359.2+293636                         B+ yso     star     III  M3 w/Av        0.0  5.5  0.4 < 8.0e-05 needs add'l followup b k          
+043419.5+265210                         A  not yso star     III                                         pending followup     c            
+043419.8+232649 HD 284530               B- yso     star     III  B8             7.7  1.9  1.2   3.8e-05 needs add'l followup b m n        
+043435.4+264406                         B-                  III  M3             1.4  5.8  0.6   1.0e-03 needs add'l followup b e k        
+043452.5+240244                         B+ not yso star     III  K2 w/ Av       1.6  4.4 -1.1   3.8e-03 needs add'l followup b            
+043456.9+225835 2MASS J04345693+2258358 A+ yso     star     III  M0            -4.5  1.8 -0.5   2.3e-04 new member           b f g i      
+043521.3+255510                            yso     embedded flat                                        Xgal                 c            
+043542.0+225222 2MASS J04354203+2252226 A+ yso     star     III  M5e          -18.6  2.1 -0.8 < 1.4e-04 new member           b f g i k    
+043557.6+225357 J04355760+2253574       A+ yso     star     II   M5:e         -30.4  3.4 -2.3   1.5e-01 new member           b c k        
+043559.4+223829                         A+ yso     class II flat K7-M0         -1.7  2.0 -2.0   5.3e-01 new member           b            
+043621.4+271912                         A- yso     star     II   K2e            0.8  2.6 -1.5   1.2e-02 possible new member  b n o        
+043621.5+235116 J04362151+2351165       A+ yso     class II II   M5.25               0.1 -1.8   6.5e-02 new member           c f          
+043636.1+265910                         B          star     III  K2             1.0  1.1 -1.4   7.8e-03 needs add'l followup b            
+043642.0+265339                         B  yso     embedded I                                           pending followup                  
+043720.8+250019                         B+ yso     star     III  G0             3.5  0.8 -0.3   3.5e-04 needs add'l followup b            
+043724.8+270919 SV* SVS 1085            B  yso     class II III  B8e          -20.4  2.3  0.7   5.6e-04 background Be        b c          
+043756.7+254622 ITG 1                   A+ yso     class II II                                          new member           c d f        
+043801.9+251926                         A+ not yso star     II   K8            -1.9  3.3 -1.6   1.5e-02 new member           b c          
+043803.6+221223                         C- not yso star     III  G0             3.2  0.3 -1.0   2.0e-03 needs add'l followup b n          
+043816.5+261450                         C- yso     star     III                                         pending followup     c            
+043826.7+265501                         B+ yso     star     III  G6-K2          1.8  1.0 -0.4   1.9e-04 needs add'l followup b            
+043905.2+233745 J04390525+2337450       A+ yso     class II flat K5e          -28.2  4.1 -1.3   3.9e-01 new member           b c f        
+043933.6+235921 J04393364+2359212       A+ yso     class II II   M5                  1.3 -1.0   1.5e-01 new member           f            
+043939.9+252034 JH 225                  B- yso     star     III  B9 w/ Av      10.5  4.1  0.9   5.0e-05 needs add'l followup b e n        
+043943.8+271956                         C          star     III  K0-K2          1.2  2.5 -0.9 < 1.4e-03 needs add'l followup b            
+043944.8+260152 ITG 15                  A+ yso     class II II   M5                  4.4 -0.3   7.2e-02 new member           d f l        
+044000.6+235821 J04400067+2358211       A+ yso     class II II   M6                  0.0 -1.5   9.6e-02 new member           f            
+044022.8+243307                            yso     embedded I                                           Xgal                 c            
+044023.0+255702                         B- yso     star     III  G0             1.0  7.4 -0.5   2.2e-04 needs add'l followup l            
+044048.4+233941                         A-                  II   K0             0.8  2.1 -1.9   1.2e-02 possible new member  b n          
+044124.6+254353 ITG 40                  A+ yso     class II flat M3.5               22.2 -0.8   6.0e-02 new member           d f          
+044125.7+254349                         B  not yso embedded I                                           pending followup     e g          
+044200.4+235813                            yso     embedded I                                           Xgal                 c            
+044241.1+244117 CCDM J04427+2441AB      B+ yso     star     III  A0             9.8                     needs add'l followup l            
+044253.9+253709                         B  not yso star     III  F5             3.3  2.2 -1.5   4.3e-03 needs add'l followup n            
+044315.8+235358                         C- yso     embedded I                                           pending followup                  
+044325.1+255706                         B+ yso     star     III  K7-M0          0.5  0.2 -0.5   2.0e-04 needs add'l followup b l          
+044345.3+243908 TYC 1834-591-1          B  yso     star     III                                         pending followup     c m          
+044358.3+235103                         C- yso     star     III  M3             1.4  3.7  0.8 < 9.5e-06 needs add'l followup b k          
+044518.2+242436 HD 30067                B+ yso     star     III  A4V           10.6                     needs add'l followup l m          
+044539.8+251704                         B  yso     star     III  M5             0.0  4.9 -0.1 < 7.3e-05 needs add'l followup b c e k l    
+044550.7+254448                            yso     embedded flat                                        Xgal                 c            
+044555.7+261858                         A  not yso star     II   K4             1.3  2.4 -1.0   2.1e-02 possible new member  b c          
+044557.0+244042                         B-         class II III  K2             1.5  1.8 -1.9   1.5e-02 needs add'l followup b e n        
+044609.6+245237                         A- not yso star     II   early G        2.4  5.4 -1.4   4.3e-03 possible new member  b c n        
+044639.8+242526                         C-                  III  M5             0.0  4.5  1.0 < 1.8e-04 needs add'l followup b e k l      
+044644.4+262306                         B+                  III  M4             0.0  3.7  0.8 < 1.8e-04 needs add'l followup b k l        
+044650.3+243815                         B- not yso star     III  K0-K1 w/ Av    2.1  1.8 -2.0   7.9e-03 needs add'l followup b n          
+044802.3+253359                         B  yso     star     III  K0-K1 w/ Av    0.0  5.9 -0.4   8.0e-05 needs add'l followup b l          
+044832.3+234746                         C  yso     embedded I                                           pending followup                  
+044857.4+255853 2MASX 04485745+2558527  B+ not yso class II II   K              0.0  5.0 -1.9   1.5e-02 possible new member  b c n        
+044900.1+241346                            yso     contam.  I                                           Xgal                 c            
+044913.7+252549                         C-         contam.  III  F6             2.6  4.5 -1.6   1.1e-02 needs add'l followup b n          
+044916.3+243827 CCDM J04493+2438A       C  yso     star     III  K2 w/ Av       1.6  0.5 -0.2   1.8e-04 needs add'l followup b j          
+044941.5+254010                         B+ not yso star     III  M3             0.0  1.5 -2.0   1.1e-02 needs add'l followup b c k        
