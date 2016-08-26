@@ -21,18 +21,21 @@ beam_color='#d95f02'  # previously used '#E31A1C'
 
 for region_i in region_list:
     plot_param=plottingDictionary[region_i]
-    file_w11='{0}/{0}_NH3_11_{1}_mom0.fits'.format(region_i,extension)
+    file_w11='{0}/{0}_NH3_11_{1}_mom0_QA_trim.fits'.format(region_i,extension)
     for i in range(len(line_list)):
         line_i=line_list[i]
         label_i=label_list[i]
-        file_mom0='{0}/{0}_{1}_{2}_mom0.fits'.format(region_i,line_i,extension)
+        file_mom0='{0}/{0}_{1}_{2}_mom0_QA_trim.fits'.format(region_i,line_i,extension)
         v_min=plot_param['mom0_min'][i]
         v_max=plot_param['mom0_max'][i]
         cont_levs=2**np.arange( 0,20)*plot_param['w11_step']
         if os.path.isfile(file_mom0):
             fig=aplpy.FITSFigure(file_mom0, hdu=0, figsize=(plot_param['size_x'], plot_param['size_y']) )
-            fig.show_colorscale( cmap=color_table,vmin=v_min, vmax=v_max)
-            fig.set_nan_color('0.9')
+            if line_i == 'NH3_11':
+                fig.show_colorscale( cmap=color_table,vmin=v_min, vmax=v_max, stretch=plot_param['mom0_stretch'],vmid=v_min-(1.*np.abs(v_min)))
+            else:
+                fig.show_colorscale( cmap=color_table,vmin=v_min, vmax=v_max)
+            fig.set_nan_color('0.95')
             #
             fig.show_contour(file_w11, colors='gray', levels=cont_levs)
             #
@@ -42,7 +45,7 @@ for region_i in region_list:
             fig.tick_labels.set_xformat('hh:mm:ss')
             fig.tick_labels.set_yformat('dd:mm')
             # Add beam
-            fig.add_beam()
+            fig.add_beam(major=0.0088441,minor=0.0088441,angle=0)
             fig.beam.set_color(beam_color)
             fig.beam.set_corner(plot_param['beam_pos'])
             # Scale bar
