@@ -63,7 +63,7 @@ OrionA={'size_x' : 4.5, 'size_y' : 11.25,
     'pmin_list': np.array([-5,0,5,2.73,13]),
     'pmax_list': np.array([13,2,40,15,15.5]),
     'p_step': np.array([1,0.4,5,3,0.5]),
-    'w11_step' : 0.3*5. }
+    'w11_step' : 0.3*2 }
 
 plottingDictionary = {"L1688" : L1688, "B18" : B18, "NGC1333" : NGC1333, "OrionA" : OrionA}
 
