@@ -34,8 +34,9 @@ hist_minx_list = [2,0,5,2.7,13]
 hist_maxx_list = [13,1.5,37,12,15.7]
 hist_maxy_list = [2.1,8,0.65,1.6,2]
 #hist_maxy_list = [600,800,220,1.5e3,500]
-ytick_int_maj = [200,200,50,50,100]
-ytick_int_min = [50,50,10,10,20]
+ytick_int_maj = [200,200,50,200,100]
+ytick_int_min = [50,50,10,50,20]
+dataDir = '/media/DATAPART/projects/GAS/data/'
 
 hist_kwds1 = dict(histtype='stepfilled',alpha=0.2,normed=True)
 # All together
@@ -50,8 +51,8 @@ for par_i in range(len(par_list)):
     for region_i in range(len(region_list)):
         region = region_list[region_i]
         plot_param=plottingDictionary[region]
-        par_file = '{0}/parameterMaps/{0}_{1}_{2}_flag.fits'.format(region,par,extension)
-        epar_file = '{0}/{0}_parameter_maps_{1}_trim.fits'.format(region,extension)
+        par_file = dataDir + '{0}/parameterMaps/{0}_{1}_{2}_flag.fits'.format(region,par,extension)
+        epar_file = dataDir + '{0}/{0}_parameter_maps_{1}_trim.fits'.format(region,extension)
         epar_hdu = fits.open(epar_file)
         epar_data = epar_hdu[0].data[epar_ext[par_i],:,:]
         epar_hdu.close()
@@ -94,8 +95,8 @@ for par_i in range(len(par_list)):
         region_i = i
         region = region_list[region_i]
         plot_param=plottingDictionary[region]
-        par_file = '{0}/parameterMaps/{0}_{1}_{2}_flag.fits'.format(region,par,extension)
-        epar_file = '{0}/{0}_parameter_maps_{1}_trim.fits'.format(region,extension)
+        par_file = dataDir + '{0}/parameterMaps/{0}_{1}_{2}_flag.fits'.format(region,par,extension)
+        epar_file = dataDir + '{0}/{0}_parameter_maps_{1}_trim.fits'.format(region,extension)
         epar_hdu = fits.open(epar_file)
         epar_data = epar_hdu[0].data[epar_ext[par_i],:,:]
         epar_hdu.close()
