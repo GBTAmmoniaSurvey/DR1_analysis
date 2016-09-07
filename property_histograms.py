@@ -24,7 +24,7 @@ def mask_hist(par_data,epar_data,epar_lim,par_max,par_min=0):
 region_list = ['B18','NGC1333','L1688','OrionA']
 par_list = ['Vlsr','Sigma','Tkin','Tex','N_NH3']
 epar_ext = [10,9,6,7,8]
-epar_limits = [0.02,0.1,1,2,0.5]
+epar_limits = [0.05,0.1,1,2,0.5]
 extension = 'DR1_rebase3'
 label_list=['$v_{LSR}$ (km s$^{-1}$)','$\sigma_v$ (km s$^{-1}$)','$T_K$ (K)','$T_{ex}$ (K)','log N(para-NH$_3$)']
 plot_colours = ['black','blue','green','orange']
@@ -34,7 +34,7 @@ hist_minx_list = [2,0,5,2.7,13]
 hist_maxx_list = [13,1.5,37,12,15.7]
 hist_maxy_list = [2.1,8,0.65,1.6,2]
 #hist_maxy_list = [600,800,220,1.5e3,500]
-ytick_int_maj = [200,200,50,200,100]
+ytick_int_maj = [300,200,50,200,100]
 ytick_int_min = [50,50,10,50,20]
 dataDir = '/media/DATAPART/projects/GAS/data/'
 
