@@ -29,7 +29,7 @@ extension='DR1_rebase3'
 par_list = ['Vlsr','Sigma','Tkin','Tex','N_NH3']
 label_list=['$v_{LSR}$ (km s$^{-1}$)','$\sigma_v$ (km s$^{-1}$)','$T_K$ (K)','$T_{ex}$ (K)','log N(para-NH$_3$)']
 # Colour tables for plots
-ctable_list = ['YlGnBu_r','YlGnBu_r','hot','hot','hot']
+ctable_list = ['RdYlBu_r','YlGnBu_r','hot','hot','hot']
 # Contour parameters (currently NH3 moment 0)
 cont_color='black'
 cont_lw   = 0.6
