@@ -34,8 +34,10 @@ hist_minx_list = [2,0,5,2.7,13]
 hist_maxx_list = [13,1.5,37,12,15.7]
 hist_maxy_list = [2.1,8,0.65,1.6,2]
 #hist_maxy_list = [600,800,220,1.5e3,500]
-ytick_int_maj = [300,200,50,200,100]
-ytick_int_min = [50,50,10,50,20]
+#ytick_int_maj = [300,200,50,200,100]
+#ytick_int_min = [50,50,10,50,20]
+ytick_int_maj = [0.4,2,0.2,0.4,0.5]
+ytick_int_min = [0.1,0.5,0.025,0.1,0.25]
 dataDir = '/media/DATAPART/projects/GAS/data/'
 
 hist_kwds1 = dict(histtype='stepfilled',alpha=0.2,normed=True)
@@ -113,20 +115,23 @@ for par_i in range(len(par_list)):
             bin_width = 0.3
             nbins = np.int((np.max(par_masked) - np.min(par_masked !=0))/bin_width)
             hist(par_masked[par_masked !=0],bins=nbins,ax=ax,histtype='stepfilled',alpha=0.3,
-                 color=plot_colours[region_i],label=region)
+                 color=plot_colours[region_i],label=region,normed=True)
         else:
             hist(par_masked[par_masked !=0],bins='knuth',ax=ax,histtype='stepfilled',alpha=0.3,
-                 color=plot_colours[region_i],label=region)
+                 color=plot_colours[region_i],label=region,normed=True)
         if (i+1) != len(region_list):
             ax.set_xticklabels([])
         ax.set_xlim(hist_minx_list[par_i],hist_maxx_list[par_i])
         #ax.set_ylim(0,hist_maxy_list[par_i])
+        if par == 'Tkin':
+            if region == 'OrionA' or region == 'L1688' or region == 'NGC1333':
+                ax.set_ylim(0,0.25)
         ax.yaxis.set_major_locator(ticker.MultipleLocator(ytick_int_maj[par_i]))
         ax.yaxis.set_minor_locator(ticker.MultipleLocator(ytick_int_min[par_i]))
         ax.annotate('{0}'.format(region),xy=(0.97,0.7),xycoords='axes fraction',horizontalalignment='right')
     #ax.legend(frameon=False)
     ax.set_xlabel(label)
-    fig.text(0.01,0.5,'N',va='center',rotation='vertical')
+    fig.text(0.01,0.5,'P(t)',va='center',rotation='vertical')
     #fig.tight_layout()
     fig.savefig('figures/{0}_histogram_separated.pdf'.format(par))
     plt.close('all')
