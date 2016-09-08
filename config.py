@@ -28,7 +28,7 @@ B18={'size_x' : 19, 'size_y' : 7,
 #    'mom0_max' : np.array([3.0, 0.5, 0.5, 1.8, 1.4, 1.0, 1.5]),
     'mom0_max' : np.array([7.5, 0.5, 0.5, 1.8, 1.1, 1.0, 1.5]),
     'mom0_stretch' : 'linear',
-    'pmin_list': np.array([4.5,0,5,2.73,13]),
+    'pmin_list': np.array([4.5,0,6,2.73,13]),
     'pmax_list': np.array([7.5,0.5,15,15,14.5]),
     'p_step': np.array([1,0.1,2,1,0.5]),
     'w11_step' : 0.3*3}
