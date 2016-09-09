@@ -11,7 +11,7 @@ import aplpy
 from config import plottingDictionary
 
 region_list=['L1688', 'B18', 'NGC1333', 'OrionA']
-region_list=['B18']
+#region_list=['OrionA']
 line_list=['NH3_11','NH3_22','NH3_33','C2S','HC5N','HC7N_21_20','HC7N_22_21']
 label_list=['NH$_3$(1,1)','NH$_3$(2,2)','NH$_3$(3,3)','C$_2$S','HC$_5$N',
             'HC$_7$N (21-20)','HC$_7$N (22-21)']
@@ -42,8 +42,19 @@ for region_i in region_list:
             fig=aplpy.FITSFigure(file_mom0, hdu=0, figsize=(plot_param['size_x'], plot_param['size_y']) )
             if line_i == 'NH3_11':
                 fig.show_colorscale( cmap=color_table,vmin=v_min, vmax=v_max, stretch=plot_param['mom0_stretch'],vmid=v_min-(1.*np.abs(v_min)))
+                cbar_ticks = [0,3,6,12,24,48,96]
+                # add colorbar
+                fig.add_colorbar()
+                #fig.colorbar.set_width(0.15)
+                fig.colorbar.show( box_orientation='horizontal', width=0.1, pad=0.0, ticks=cbar_ticks,
+                                   location='top', axis_label_text='Integrated Intensity (K km s$^{-1}$)')
             else:
                 fig.show_colorscale( cmap=color_table,vmin=v_min, vmax=v_max)
+                # add colorbar
+                fig.add_colorbar()
+                #fig.colorbar.set_width(0.15)
+                fig.colorbar.show( box_orientation='horizontal', width=0.1, pad=0.0, 
+                                   location='top', axis_label_text='Integrated Intensity (K km s$^{-1}$)')
             fig.set_nan_color('0.95')
             #
             fig.show_contour(w11_hdu, colors='gray', levels=cont_levs)
@@ -70,11 +81,6 @@ for region_i in region_list:
                           '{0}\n{1}'.format(region_i,label_i), 
                           relative=True, color=text_color, 
                           horizontalalignment=plot_param['label_align'])
-            # add colorbar
-            fig.add_colorbar()
-            fig.colorbar.set_width(0.15)
-            fig.colorbar.show( box_orientation='horizontal', width=0.1, pad=0.0, 
-                                location='top', axis_label_text='Integrated Intensity (K km s$^{-1}$)')
             # fig.set_system_latex(True)
             fig.save( 'figures/{0}_{1}_{2}_mom0_map.pdf'.format(region_i,line_i,extension),adjust_bbox=True)
             fig.close()

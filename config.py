@@ -47,7 +47,7 @@ NGC1333={'size_x' : 8, 'size_y' : 13.3,
     'pmin_list': np.array([-5,0,5,2.73,13]),
     'pmax_list': np.array([20,1,25,15,15]),
     'p_step': np.array([1,0.2,4,1,0.5]),
-    'w11_step' : 0.3*2.}
+    'w11_step' : 0.2*3.}
 
 OrionA={'size_x' : 4.5, 'size_y' : 11.25, 
     'scalebar_size' : 0.1*u.pc, 'scalebar_pos' : 'bottom right',
