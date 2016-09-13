@@ -40,12 +40,14 @@ beam_edge = 'black'
 nan_color = '0.95'
 #beam_color='#d95f02'  # previously used '#E31A1C'
 # Masking of small (noisy) regions
+# Property maps have already been flagged
 selem = np.array([[0,1,0],[1,1,1],[0,1,0]])
-maskLim = [0.25,0.5,0.5,0.2]
+maskLim = [0.25,0.5,0.5,0.5]
 
 for region_i in range(len(region_list)):
     region = region_list[region_i]
     plot_param=plottingDictionary[region]
+    # Removing lonely pixels from the NH3 (1,1) contours 
     file_w11='{0}/{0}_NH3_11_{1}_mom0_QA_trim.fits'.format(region,extension)
     cont_levs=2**np.arange( 0,10)*plot_param['w11_step']
     LowestContour = cont_levs[0]*maskLim[region_i]
@@ -61,13 +63,9 @@ for region_i in range(len(region_list)):
         if os.path.isfile(par_file):
             par_hdu = fits.open(par_file)
             par_data = par_hdu[0].data
-            MaskedPar = mask * par_data
-            mask2 = binary_opening(MaskedPar, selem)
-            MaskedPar = mask2 * MaskedPar
-            MaskedPar[MaskedPar == 0] = np.nan 
-            par_hdu[0].data = MaskedPar
-            v_min = np.max([pmin_list[par_i],np.nanmin(MaskedPar)])
-            v_max = np.min([pmax_list[par_i],np.nanmax(MaskedPar)])
+            par_hdu[0].data[par_hdu[0].data == 0] = np.nan
+            v_min = np.max([pmin_list[par_i],np.nanmin(par_hdu[0].data)])
+            v_max = np.min([pmax_list[par_i],np.nanmax(par_hdu[0].data)])
             fig=aplpy.FITSFigure(par_hdu,figsize=(plot_param['size_x'], plot_param['size_y']))
             fig.show_colorscale(cmap=ctable_list[par_i],vmin=v_min,vmax=v_max)
             fig.set_nan_color(nan_color)
@@ -101,8 +99,6 @@ for region_i in range(len(region_list)):
             colorbar_step = p_step[par_i]
             # make nice tick labels using defined colorbar step
             ticks = np.arange(np.ceil((v_max-v_min)/colorbar_step)+2)*colorbar_step + np.int(v_min)
-            #fig.add_colorbar(location='top',width=0.15,pad=0,ticks=ticks)
-            #fig.colorbar.set_width(0.15)
             fig.add_colorbar()
             fig.colorbar.show(box_orientation='horizontal', width=0.1, pad=0.0, location='top',ticks=ticks)
             # fig.set_system_latex(True)
