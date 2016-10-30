@@ -18,6 +18,8 @@ label_list=['NH$_3$(1,1)','NH$_3$(2,2)','NH$_3$(3,3)','C$_2$S','HC$_5$N',
 extension='DR1_rebase3'
 color_table='magma'
 text_color='black'
+text_size = 14
+b18_text_size = 20
 beam_color='#d95f02'  # previously used '#E31A1C'
 # Masking of small (noisy) regions
 selem = np.array([[0,1,0],[1,1,1],[0,1,0]])
@@ -32,6 +34,8 @@ for region_i in region_list:
     mask = binary_opening(map > LowestContour, selem)
     MaskedMap = mask*map
     w11_hdu[0].data = MaskedMap
+    if region_i == 'B18':
+        text_size = b18_text_size
     for i in range(len(line_list)):
         line_i=line_list[i]
         label_i=label_list[i]
@@ -55,12 +59,16 @@ for region_i in region_list:
                 #fig.colorbar.set_width(0.15)
                 fig.colorbar.show( box_orientation='horizontal', width=0.1, pad=0.0, 
                                    location='top', axis_label_text='Integrated Intensity (K km s$^{-1}$)')
+            fig.colorbar.set_font(family='sans_serif',size=text_size)
+            fig.colorbar.set_axis_label_font(family='sans_serif',size=text_size)
             fig.set_nan_color('0.95')
             #
             fig.show_contour(w11_hdu, colors='gray', levels=cont_levs)
-            #
+            # Axis labels
+            fig.axis_labels.set_font(family='sans_serif',size=text_size)
             # Ticks
             fig.ticks.set_color(text_color)
+            fig.tick_labels.set_font(family='sans_serif',size=text_size)
             fig.tick_labels.set_style('colons')
             fig.tick_labels.set_xformat('hh:mm:ss')
             fig.tick_labels.set_yformat('dd:mm')
@@ -74,13 +82,15 @@ for region_i in region_list:
             ang_sep =  (plot_param['scalebar_size'].to(u.au)/plot_param['distance']).to(u.arcsec, equivalencies=u.dimensionless_angles())
             fig.add_scalebar(ang_sep.to(u.degree))
             fig.scalebar.set_corner(plot_param['scalebar_pos'])
+            fig.scalebar.set_font(family='sans_serif',size=text_size)
             fig.scalebar.set(color=text_color)
             fig.scalebar.set_label('{0:4.2f}'.format(plot_param['scalebar_size']))
             # Labels
             fig.add_label(plot_param['label_xpos'], plot_param['label_ypos'], 
                           '{0}\n{1}'.format(region_i,label_i), 
                           relative=True, color=text_color, 
-                          horizontalalignment=plot_param['label_align'])
+                          horizontalalignment=plot_param['label_align'],
+                          family='sans_serif',size=text_size)
             # fig.set_system_latex(True)
             fig.save( 'figures/{0}_{1}_{2}_mom0_map.pdf'.format(region_i,line_i,extension),adjust_bbox=True)
             fig.close()
