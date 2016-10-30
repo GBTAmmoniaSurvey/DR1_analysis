@@ -26,7 +26,8 @@ par_list = ['Vlsr','Sigma','Tkin','Tex','N_NH3']
 epar_ext = [10,9,6,7,8]
 epar_limits = [0.05,0.1,1,2,0.5]
 extension = 'DR1_rebase3'
-label_list=['$v_{LSR}$ (km s$^{-1}$)','$\sigma_v$ (km s$^{-1}$)','$T_K$ (K)','$T_{ex}$ (K)','log N(para-NH$_3$)']
+label_list=['$v_{LSR}$ (km s$^{-1}$)','$\sigma_v$ (km s$^{-1}$)','$T_K$ (K)','$T_{ex}$ (K)','log N(para-NH$_3$) (cm$^{-2}$)']
+label_short = ['$v_{LSR}$','$\sigma_v$','$T_K$','$T_{ex}$','log N(para-NH$_3$)']
 plot_colours = ['black','blue','green','orange']
 #plot_colours = ['black','darkblue','blue','cornflowerblue']
 #plot_colours = ['#a6cee3', '#fdbf6f', '#33a02c', '#fb9a99']
@@ -38,7 +39,7 @@ hist_maxy_list = [2.1,8,0.65,1.6,2]
 #ytick_int_min = [50,50,10,50,20]
 ytick_int_maj = [0.4,2,0.2,0.4,0.5]
 ytick_int_min = [0.1,0.5,0.025,0.1,0.25]
-dataDir = '/media/DATAPART/projects/GAS/data/'
+dataDir = '/media/DATAPART/projects/GAS/testing/'
 
 hist_kwds1 = dict(histtype='stepfilled',alpha=0.2,normed=True)
 # All together
@@ -93,6 +94,7 @@ for par_i in range(len(par_list)):
     fig,axes = plt.subplots(len(region_list),1,figsize=(4.5,5))
     par = par_list[par_i]
     label = label_list[par_i]
+    ylabel = label_short[par_i]
     for i, ax in enumerate(fig.axes):
         region_i = i
         region = region_list[region_i]
@@ -131,7 +133,37 @@ for par_i in range(len(par_list)):
         ax.annotate('{0}'.format(region),xy=(0.97,0.7),xycoords='axes fraction',horizontalalignment='right')
     #ax.legend(frameon=False)
     ax.set_xlabel(label)
-    fig.text(0.01,0.5,'P(t)',va='center',rotation='vertical')
+    fig.text(0.01,0.5,'P ({0})'.format(ylabel),va='center',rotation='vertical')
     #fig.tight_layout()
     fig.savefig('figures/{0}_histogram_separated.pdf'.format(par))
     plt.close('all')
+
+# Same plot for X(NH3)
+fig,axes = plt.subplots(len(region_list),1,figsize=(4.5,5))
+for i, ax in enumerate(fig.axes):
+    region_i = i
+    region = region_list[region_i]
+    plot_param=plottingDictionary[region]
+    par_file = dataDir + '{0}/parameterMaps/{0}_XNH3_{1}.fits'.format(region,extension)
+    par_hdu = fits.open(par_file)
+    par_data = par_hdu[0].data
+    par_hdu.close()
+    pmin = -9.5
+    pmax = -6.5
+    par_data[par_data == 0] = np.nan
+    par_masked = par_data[np.isfinite(par_data)]
+    hist(par_masked[par_masked !=0],bins='knuth',ax=ax,histtype='stepfilled',alpha=0.3,
+         color=plot_colours[region_i],label=region,normed=True)
+    if (i+1) != len(region_list):
+        ax.set_xticklabels([])
+    ax.set_xlim(pmin,pmax)
+    #ax.set_ylim(0,hist_maxy_list[par_i])
+    ax.yaxis.set_major_locator(ticker.MultipleLocator(ytick_int_maj[par_i]))
+    ax.yaxis.set_minor_locator(ticker.MultipleLocator(ytick_int_min[par_i]))
+    ax.annotate('{0}'.format(region),xy=(0.97,0.7),xycoords='axes fraction',horizontalalignment='right')
+#ax.legend(frameon=False)
+ax.set_xlabel('log $X$(NH$_3$)')
+fig.text(0.01,0.5,'P($X$(NH$_3$))',va='center',rotation='vertical')
+#fig.tight_layout()
+fig.savefig('figures/XNH3_histogram_separated.pdf')
+plt.close('all')
