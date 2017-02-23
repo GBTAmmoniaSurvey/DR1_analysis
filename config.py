@@ -3,7 +3,7 @@ import numpy as np
 
 L1688={'size_x' : 9, 'size_y' : 7, 
     'scalebar_size' : 0.1*u.pc, 'scalebar_pos' : 'bottom right',
-    'distance' : 137.3.*u.pc, 'beam_pos' : 'bottom left',
+    'distance' : 137.3*u.pc, 'beam_pos' : 'bottom left',
     'label_xpos' : 0.025, 'label_ypos' : 0.1,
     'label_align' : 'left',
     'rms_min' : np.array([0.05, 0.05, 0.05, 0.1, 0.05, 0.05, 0.05]),
