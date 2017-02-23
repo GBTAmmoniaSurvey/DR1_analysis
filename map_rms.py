@@ -36,7 +36,7 @@ for region_i in region_list:
     for i in range(len(line_list)):
         line_i=line_list[i]
         label_i=label_list[i]
-        file_rms='{0}/{0}_{1}_{2}_rms.fits'.format(region_i,line_i,extension)
+        file_rms='{0}/{0}_{1}_{2}_rms_QA_trim.fits'.format(region_i,line_i,extension)
         v_min=plot_param['rms_min'][i]
         v_max=plot_param['rms_max'][i]
         if os.path.isfile(file_rms):
