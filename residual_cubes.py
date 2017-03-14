@@ -7,20 +7,31 @@ from pyspeckit.spectrum.models import ammonia
 import astropy.utils.console as console
 import scipy.ndimage as nd
 
-def residual_cube(cubename, fitfilename, expand=20, writemodel=False,
+def residual_cube(cubename, fitfile=None, 
+                  expand=20, writemodel=False, fileprefix=None,
+                  filesuffix=None,
                   writeresidual=False, writechisq=True):
-    """This function generates products for evaluating the goodness of fit for a cold_ammonia model.  
+    """This function generates products for evaluating the goodness of
+    fit for a cold_ammonia model.  Either a parameter cube name must
+    be passed or the prefix/suffixes of the files.
 
     Parameters
     ----------
 
     cubename : str
         Name of the original data file
-    fitfilename : str
-        Name of the parameter file produced by the cube fitter
     
     Keywords
     --------
+    fitfile : str
+        Name of the parameter file produced by the cube fitter
+    fileprefix : str
+        Prefix of file name before the parameter name (e.g., for
+        L1688_N_NH3_DR1_rebase3_flag.fits, this would be 'L1688_').
+    filesufffix : str
+        Prefix of file name before the parameter name (e.g., for
+        L1688_N_NH3_DR1_rebase3_flag.fits, this would be
+        '_DR1_rebase3_flag').
     expand : int
         Expands the region where the residual is evaluated by this
         many channels in the spectral dimension
@@ -36,14 +47,26 @@ def residual_cube(cubename, fitfilename, expand=20, writemodel=False,
     -------
         None
     """
-    hdu = fits.open(fitfilename)
-    fitparams = hdu[0].data
-    tkin = fitparams[0, :, :]
-    tex = fitparams[1, :, :]
-    column = fitparams[2, :, :]
-    sigma = fitparams[3, :, :]
-    v0 = fitparams[4, :, :]
-    fortho = fitparams[5, :,:]
+    try:
+        if fitfile is None:
+            tkin = fits.getdata(fileprefix + 'Tkin' + filesuffix + '.fits')
+            tex = fits.getdata(fileprefix + 'Tex' + filesuffix + '.fits')
+            sigma = fits.getdata(fileprefix + 'Sigma' + filesuffix + '.fits')
+            column = fits.getdata(fileprefix + 'N_NH3' + filesuffix + '.fits')
+            v0 = fits.getdata(fileprefix + 'Vlsr' + filesuffix + '.fits')
+            fortho = np.zeros_like(v0)
+        else:
+            hdu = fits.open(fitfile)
+            fitparams = hdu[0].data
+            tkin = fitparams[0, :, :]
+            tex = fitparams[1, :, :]
+            column = fitparams[2, :, :]
+            sigma = fitparams[3, :, :]
+            v0 = fitparams[4, :, :]
+            fortho = fitparams[5, :,:]
+    except NameError:
+        warnings.warn("Either fitfile or fileprefix/filesuffix"+
+                      " must be specified")
 
     cube = SpectralCube.read(cubename)
     cube  = cube.with_spectral_unit(u.km/u.s,velocity_convention='radio')
