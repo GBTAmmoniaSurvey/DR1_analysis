@@ -23,7 +23,7 @@ Addresses issue #3 in DR1_analysis
 """
 
 region_list=['L1688', 'B18', 'NGC1333', 'OrionA']
-#region_list = ['NGC1333']
+# region_list = ['OrionA']
 extension='DR1_rebase3'
 # Property maps to plot
 par_list = ['Vlsr','Sigma','Tkin','Tex','N_NH3']
@@ -64,8 +64,8 @@ for region_i in range(len(region_list)):
             par_hdu = fits.open(par_file)
             par_data = par_hdu[0].data
             par_hdu[0].data[par_hdu[0].data == 0] = np.nan
-            v_min = np.max([pmin_list[par_i],np.nanmin(par_hdu[0].data)])
-            v_max = np.min([pmax_list[par_i],np.nanmax(par_hdu[0].data)])
+            v_min = np.around(np.max([pmin_list[par_i],np.nanmin(par_hdu[0].data)]),decimals=2)
+            v_max = np.around(np.min([pmax_list[par_i],np.nanmax(par_hdu[0].data)]),decimals=2)
             fig=aplpy.FITSFigure(par_hdu,figsize=(plot_param['size_x'], plot_param['size_y']))
             fig.show_colorscale(cmap=ctable_list[par_i],vmin=v_min,vmax=v_max)
             fig.set_nan_color(nan_color)
@@ -98,7 +98,7 @@ for region_i in range(len(region_list)):
             # Add colorbar with defined tick labels
             colorbar_step = p_step[par_i]
             # make nice tick labels using defined colorbar step
-            ticks = np.arange(np.ceil((v_max-v_min)/colorbar_step)+2)*colorbar_step + np.int(v_min)
+            ticks = np.arange(np.ceil((v_max-v_min)/colorbar_step)+1)*colorbar_step + np.int(v_min)
             fig.add_colorbar()
             fig.colorbar.show(box_orientation='horizontal', width=0.1, pad=0.0, location='top',ticks=ticks)
             # fig.set_system_latex(True)
