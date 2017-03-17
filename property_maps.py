@@ -23,21 +23,24 @@ Addresses issue #3 in DR1_analysis
 """
 
 region_list=['L1688', 'B18', 'NGC1333', 'OrionA']
-# region_list = ['OrionA']
+#region_list = ['NGC1333']
 extension='DR1_rebase3'
 # Property maps to plot
 par_list = ['Vlsr','Sigma','Tkin','Tex','N_NH3']
 label_list=['$v_{LSR}$ (km s$^{-1}$)','$\sigma_v$ (km s$^{-1}$)','$T_K$ (K)','$T_{ex}$ (K)','log N(para-NH$_3$)']
 # Colour tables for plots
-ctable_list = ['RdYlBu_r','YlGnBu_r','hot','hot','hot']
+ctable_list = ['RdYlBu_r','plasma','plasma','hot','plasma'] #'YlGnBu_r'
 # Contour parameters (currently NH3 moment 0)
 cont_color='black'
 cont_lw   = 0.6
 # Other parameters
+fix_text_size = 14
+b18_text_size = 20
+oriona_text_size = 12
 text_color='black'
 beam_face = 'None'
 beam_edge = 'black'
-nan_color = '0.95'
+nan_color = 'white'
 #beam_color='#d95f02'  # previously used '#E31A1C'
 # Masking of small (noisy) regions
 # Property maps have already been flagged
@@ -56,6 +59,10 @@ for region_i in range(len(region_list)):
     pmin_list = plot_param['pmin_list']
     pmax_list = plot_param['pmax_list']
     p_step    = plot_param['p_step']
+    if region in ['B18','NGC1333']:
+        text_size = b18_text_size
+    else:
+        text_size = fix_text_size
     for par_i in range(len(par_list)):
         par = par_list[par_i]
         label_i = label_list[par_i]
@@ -64,16 +71,31 @@ for region_i in range(len(region_list)):
             par_hdu = fits.open(par_file)
             par_data = par_hdu[0].data
             par_hdu[0].data[par_hdu[0].data == 0] = np.nan
-            v_min = np.around(np.max([pmin_list[par_i],np.nanmin(par_hdu[0].data)]),decimals=2)
-            v_max = np.around(np.min([pmax_list[par_i],np.nanmax(par_hdu[0].data)]),decimals=2)
-            fig=aplpy.FITSFigure(par_hdu,figsize=(plot_param['size_x'], plot_param['size_y']))
-            fig.show_colorscale(cmap=ctable_list[par_i],vmin=v_min,vmax=v_max)
+            v_min = pmin_list[par_i]
+            v_max = pmax_list[par_i]
+            #v_min = np.max([pmin_list[par_i],np.nanmin(par_hdu[0].data)])
+            #v_max = np.min([pmax_list[par_i],np.nanmax(par_hdu[0].data)])
+            if par in ['Sigma']:
+                #v_min = 0.
+                #v_max = 2.
+                #par_hdu[0].data = par_hdu[0].data-0.15
+                fig=aplpy.FITSFigure(par_hdu,figsize=(plot_param['size_x'], plot_param['size_y']))
+                fig.show_colorscale(cmap=ctable_list[par_i],vmin=v_min,vmax=v_max,
+                                    stretch='log',vmid=v_min-0.5)
+                #fig.show_contour(par_hdu,colors=['mediumblue'],alpha=0.7,
+                #                 levels=[0.15],
+                #                 linewidths=cont_lw*2,zorder=1)
+            else:
+                fig=aplpy.FITSFigure(par_hdu,figsize=(plot_param['size_x'], plot_param['size_y']))
+                fig.show_colorscale(cmap=ctable_list[par_i],vmin=v_min,vmax=v_max)
             fig.set_nan_color(nan_color)
             # Moment contours
             fig.show_contour(w11_hdu,colors=cont_color,levels=cont_levs,
-                             linewidths=cont_lw)
+                             linewidths=cont_lw,zorder=3)
             # Ticks
+            fig.axis_labels.set_font(family='sans_serif',size=text_size)
             fig.ticks.set_color(text_color)
+            fig.tick_labels.set_font(family='sans_serif',size=text_size)
             fig.tick_labels.set_xformat('hh:mm:ss')
             fig.tick_labels.set_style('colons')
             fig.tick_labels.set_yformat('dd:mm')
@@ -90,17 +112,20 @@ for region_i in range(len(region_list)):
             fig.scalebar.set_corner(plot_param['scalebar_pos'])
             fig.scalebar.set(color=text_color)
             fig.scalebar.set_label('{0:4.2f}'.format(plot_param['scalebar_size']))
+            fig.scalebar.set_font(family='sans_serif',size=text_size)
             # Labels
             fig.add_label(plot_param['label_xpos'], plot_param['label_ypos'], 
                           '{0}\n{1}'.format(region,label_i), 
                           relative=True, color=text_color, 
-                          horizontalalignment=plot_param['label_align'])
+                          horizontalalignment=plot_param['label_align'],
+                          family='sans_serif',size=text_size)
             # Add colorbar with defined tick labels
-            colorbar_step = p_step[par_i]
             # make nice tick labels using defined colorbar step
-            ticks = np.arange(np.ceil((v_max-v_min)/colorbar_step)+1)*colorbar_step + np.int(v_min)
+            colorbar_step = p_step[par_i]
+            ticks = np.arange(np.ceil((v_max-v_min)/colorbar_step)+2)*colorbar_step + np.int(v_min)
             fig.add_colorbar()
             fig.colorbar.show(box_orientation='horizontal', width=0.1, pad=0.0, location='top',ticks=ticks)
+            fig.colorbar.set_font(family='sans_serif',size=text_size)
             # fig.set_system_latex(True)
             fig.save( 'figures/{0}_{1}_{2}_map.pdf'.format(region,extension,par),adjust_bbox=True,dpi=100)#, bbox_inches='tight')
             fig.close()
