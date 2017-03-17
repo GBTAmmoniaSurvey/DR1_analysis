@@ -10,8 +10,8 @@ import aplpy
 
 from config import plottingDictionary
 
-region_list=['L1688', 'B18', 'NGC1333', 'OrionA']
-#region_list=['OrionA']
+#region_list=['L1688', 'B18', 'NGC1333', 'OrionA']
+region_list=['OrionA']
 line_list=['NH3_11','NH3_22','NH3_33','C2S','HC5N','HC7N_21_20','HC7N_22_21']
 label_list=['NH$_3$(1,1)','NH$_3$(2,2)','NH$_3$(3,3)','C$_2$S','HC$_5$N',
             'HC$_7$N (21-20)','HC$_7$N (22-21)']
