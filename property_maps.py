@@ -23,7 +23,7 @@ Addresses issue #3 in DR1_analysis
 """
 
 region_list=['L1688', 'B18', 'NGC1333', 'OrionA']
-#region_list = ['NGC1333']
+# region_list = ['OrionA']
 extension='DR1_rebase3'
 # Property maps to plot
 par_list = ['Vlsr','Sigma','Tkin','Tex','N_NH3']
