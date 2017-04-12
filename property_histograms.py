@@ -35,7 +35,7 @@ hist_maxx_list = [13,1.5,37,12,15.7]
 hist_maxy_list = [2.1,8,0.65,1.6,2]
 ytick_int_maj = [0.4,2,0.2,0.4,0.5]
 ytick_int_min = [0.1,0.5,0.025,0.1,0.25]
-dataDir = '/media/DATAPART/projects/GAS/testing/'
+dataDir = ''
 
 hist_kwds1 = dict(histtype='stepfilled',alpha=0.2,normed=True)
 
@@ -83,7 +83,7 @@ for par_i in range(len(par_list)):
         ax.annotate('{0}'.format(region),xy=(0.97,0.7),xycoords='axes fraction',horizontalalignment='right')
     #ax.legend(frameon=False)
     ax.set_xlabel(label)
-    fig.text(0.01,0.5,'P ({0})'.format(ylabel),va='center',rotation='vertical')
+    fig.text(0.001,0.5,'P ({0})'.format(ylabel),va='center',rotation='vertical')
     #fig.tight_layout()
     fig.savefig('figures/{0}_histogram_separated.pdf'.format(par))
     plt.close('all')
@@ -121,7 +121,7 @@ for i, ax in enumerate(fig.axes):
 ax.set_xlabel('log $X$(NH$_3$)')
 fig.text(0.01,0.5,'P($X$(NH$_3$))',va='center',rotation='vertical')
 #fig.tight_layout()
-fig.savefig('figures/XNH3_histogram_separated.pdf')
+fig.savefig('figures/XNH3_histogram_separated.pdf',bbox_inches='tight')
 plt.close('all')
 
 '''
